@@ -9,16 +9,14 @@ The application aims to store job openings, registration of employers, candidate
 
 * Python 3.8.6
 * Pip 20.2.1
-* PostgreSQL 12
-* Docker >= 17.12.0+
-* docker-compose
+* SQLite3
 
 
 ## Setup process
 
 ### Installing dependencies
 
-We use the command above to create our virtual environment `env`:
+We use the command below to create our virtual environment `env`:
 
 ```bash
 python -m venv env
@@ -30,12 +28,13 @@ And then we use this one to install our dependencies from `requirements.txt` fil
 pip install -r requirements.txt
 ```
 
-### Installing docker environment
-
-Finally we use the command above to build our 'Postgres environment' using `docker`. Go inside of directory where we can find the `docker-compose.yml` file. The run:
+Finally we use the commands listed below to migrate our data to `SQLite3` database:
 
 ```bash
-docker-compose up -d
+python manage.py makemigrations
+```
+```bash
+python manage.py migrate
 ```
 
 This Compose file contains the following environment variables:
